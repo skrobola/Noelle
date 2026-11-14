@@ -29,7 +29,7 @@ export default function EmailSignup() {
       }
       
       setStatus('success');
-      setMessage('Thank you for signing up! We&apos;ll be in touch soon.');
+      setMessage(data.message || "Thank you for signing up! We'll be in touch soon.");
       setEmail('');
       setName('');
     } catch (error) {
