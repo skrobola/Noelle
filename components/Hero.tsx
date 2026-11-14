@@ -1,29 +1,62 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <section className="py-20 px-4" style={{ background: 'linear-gradient(to bottom, rgba(183, 229, 250, 0.25) 0%, rgba(183, 229, 250, 0.25) 100%)' }}>
-      <div className="max-w-7xl mx-auto text-center">
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-          New Children&apos;s Book!
-        </h1>
-        <div className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-4">
-            Grandma, You Give Me Courage:
-          </h2>
-          <p className="text-xl md:text-2xl text-gray-700 mb-6">
-            Another Whisper From Noelle
+    <section className="relative min-h-[min(92vh,860px)] overflow-hidden sky-gradient">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.55) 1px, transparent 0)',
+          backgroundSize: '28px 28px',
+        }}
+        aria-hidden
+      />
+
+      <div className="relative mx-auto grid min-h-[min(92vh,860px)] max-w-7xl items-center gap-8 px-4 py-16 md:grid-cols-2 md:gap-4 md:px-8 md:py-20">
+        <div className="animate-fade-up z-10 order-2 text-center md:order-1 md:text-left">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-whisper-blue-deep">
+            Children&apos;s books for the heart
           </p>
+          <h1 className="font-display text-5xl font-semibold leading-[1.05] text-ink text-balance md:text-6xl lg:text-7xl">
+            A Whisper From Noelle
+          </h1>
+          <p className="mt-5 max-w-md text-lg leading-relaxed text-ink-muted md:text-xl mx-auto md:mx-0">
+            Gentle stories that help families explore feelings, listening, and love—together.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 md:justify-start">
+            <Link href="#books" className="btn-primary">
+              Explore the books
+            </Link>
+            <a
+              href="https://amzn.to/44DyEUO"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+            >
+              Buy latest
+            </a>
+          </div>
         </div>
-        <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-          A new book for parents, grandparents, and children
-        </p>
-        <Link
-          href="https://amzn.to/44DyEUO" target="_blank" 
-          className="inline-block bg-whisper-blue hover:bg-whisper-blue-dark text-white font-semibold px-8 py-4 rounded-lg transition shadow-lg hover:shadow-xl"
-        >
-          Buy Now
-        </Link>
+
+        <div className="relative order-1 flex items-center justify-center md:order-2 md:justify-end">
+          <div
+            className="absolute h-64 w-64 rounded-full bg-gold-soft/50 blur-3xl md:h-80 md:w-80"
+            aria-hidden
+          />
+          <div className="animate-float-slow relative w-full max-w-lg md:max-w-xl">
+            <Image
+              src="/NoelleWhisper2.png"
+              alt="Noelle, a gentle angel whispering hope"
+              width={600}
+              height={381}
+              priority
+              className="img-knockout h-auto w-full drop-shadow-sm"
+              sizes="(max-width: 768px) 90vw, 50vw"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

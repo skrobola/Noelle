@@ -3,20 +3,122 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
+  --background: #f7fbfe;
+  --foreground: #1b3a4a;
+  --paper: #ffffff;
+  --sky: #d8f0fb;
+  --sky-deep: #9ed4ef;
+  --whisper-blue: #b7e5fa;
+  --whisper-blue-deep: #2a6f8a;
+  --whisper-blue-deeper: #1b4c5c;
+  --gold: #e6c35c;
+  --gold-soft: #f3e2a0;
+  --ink-muted: #4a6674;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-whisper-blue-deep px-7 py-3.5 font-semibold text-white shadow-md transition hover:bg-whisper-blue-deeper hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-whisper-blue-deep;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl border-2 border-whisper-blue-deep/30 bg-white/70 px-7 py-3.5 font-semibold text-whisper-blue-deeper backdrop-blur-sm transition hover:border-whisper-blue-deep hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-whisper-blue-deep;
+  }
+
+  .section-heading {
+    @apply font-display text-4xl font-semibold tracking-tight text-ink md:text-5xl;
+  }
+
+  .section-lead {
+    @apply mx-auto mt-4 max-w-2xl text-center text-lg text-ink-muted;
+  }
+
+  .img-knockout {
+    mix-blend-mode: screen;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .sky-gradient {
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(243, 226, 160, 0.45) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 50% at 20% 80%, rgba(158, 212, 239, 0.55) 0%, transparent 50%),
+      linear-gradient(165deg, #e8f6fc 0%, #cceaf8 45%, #b7e5fa 100%);
+  }
+
+  .paper-wash {
+    background:
+      radial-gradient(ellipse at top, rgba(183, 229, 250, 0.35) 0%, transparent 55%),
+      var(--background);
+  }
+
+  .animate-float-slow {
+    animation: float-slow 7s ease-in-out infinite;
+  }
+
+  .animate-float-drift {
+    animation: float-drift 9s ease-in-out infinite;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.9s ease-out both;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes float-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(-2deg);
+  }
+  50% {
+    transform: translate(8px, -10px) rotate(3deg);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow,
+  .animate-float-drift,
+  .animate-fade-up {
+    animation: none;
   }
 }

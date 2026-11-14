@@ -19,41 +19,41 @@ const blogPosts = [
           We are pleased to announce the launch of our 4th book in the Whisper series, &ldquo;Grandma, You Give Me Courage: Another Whisper From Noelle.&rdquo; This new installment aims to enrich your family connections and extend the series&apos; legacy of emotional wisdom.
         </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h2 className="mt-8 mb-4 font-display text-2xl font-semibold text-ink">
           The Journey So Far
         </h2>
         <p className="mb-6">
           The Whisper series has been a journey of joy and fulfillment, enabling us to explore and celebrate the power of family bonds. The series began with &ldquo;A Whisper From Noelle,&rdquo; focusing on the art of presence and emotional navigation between parents and children. Subsequent books have delved into empathy and active listening.
         </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h2 className="mt-8 mb-4 font-display text-2xl font-semibold text-ink">
           What&apos;s New?
         </h2>
         <p className="mb-6">
           &ldquo;Grandma, You Give Me Courage&rdquo; takes you on a new journey, exploring the wisdom of stepping out of your comfort zone. This book will guide you and your loved ones in mastering emotional and value-based explorations.
         </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h2 className="mt-8 mb-4 font-display text-2xl font-semibold text-ink">
           Bonus Material
         </h2>
         <p className="mb-6">
           To enhance your reading experience, each purchase includes a complimentary PDF activity book designed to add creativity and interactive learning.{' '}
           <a
             href="#"
-            className="text-whisper-blue hover:text-whisper-blue-darker font-semibold underline"
+            className="font-semibold text-whisper-blue-deep underline-offset-2 hover:underline"
           >
             Download
           </a>
         </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h2 className="mt-8 mb-4 font-display text-2xl font-semibold text-ink">
           Support a Cause
         </h2>
         <p className="mb-6">
           In alignment with International Charity Day, all proceeds from our book sales will benefit the College of New Jersey (TCNJ). Your purchase directly supports psychology students and their groundbreaking research.
         </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h2 className="mt-8 mb-4 font-display text-2xl font-semibold text-ink">
           How to Purchase
         </h2>
         <p className="mb-6">
@@ -62,7 +62,7 @@ const blogPosts = [
             href="https://amzn.to/3PqVp9V"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-whisper-blue hover:text-whisper-blue-darker font-semibold underline"
+            className="font-semibold text-whisper-blue-deep underline-offset-2 hover:underline"
           >
             click here
           </a>
@@ -73,7 +73,7 @@ const blogPosts = [
           Your support is vital in the continued success and evolution of the Whisper series. For more information, visit our website.
         </p>
 
-        <p className="mb-6 font-semibold text-lg">
+        <p className="mb-6 text-lg font-semibold text-ink">
           Elevate your family bonds and contribute to a noble cause. Get your copy today.
         </p>
       </>
@@ -97,14 +97,14 @@ const blogPosts = [
         <p className="mb-6">
           Remember to take your time and carefully consider each element of your book. With patience, persistence, and creativity, you can create a book that kids will treasure for years.
         </p>
-        <div className="mt-8 p-6 rounded-lg border-l-4 border-whisper-blue" style={{ backgroundColor: 'rgba(183, 229, 250, 0.25)' }}>
-          <h3 className="text-xl font-bold text-gray-900 mb-2">
+        <div className="mt-8 rounded-2xl border-l-4 border-gold bg-sky/60 p-6">
+          <h3 className="mb-2 font-display text-xl font-semibold text-ink">
             Template:{' '}
             <a
               href="https://docs.google.com/document/d/1tG-_VVYRK8dNZZDr8gh5CrqNU2ujyxuOpKwHsmqBsmc/edit?usp=share_link"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-whisper-blue hover:text-whisper-blue-darker underline"
+              className="text-whisper-blue-deep underline-offset-2 hover:underline"
             >
               Children&apos;s Picture Book Manuscript Template
             </a>
@@ -130,47 +130,39 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }
 
   return (
-    <div className="py-20 px-4 bg-gray-50 min-h-screen">
-      <div className="max-w-4xl mx-auto">
-        <Link 
+    <div className="paper-wash min-h-screen py-16 px-4 md:py-20">
+      <div className="mx-auto max-w-4xl">
+        <Link
           href="/blog"
-          className="text-whisper-blue hover:text-whisper-blue-darker font-semibold mb-6 inline-block"
+          className="mb-6 inline-block font-semibold text-whisper-blue-deep underline-offset-2 hover:underline"
         >
           ← Back to Blog
         </Link>
 
-        <article className="bg-white rounded-lg shadow-lg overflow-hidden">
+        <article className="overflow-hidden rounded-3xl bg-paper shadow-soft ring-1 ring-whisper-blue/40">
           {post.image && (
-            <div className="relative w-full h-64 md:h-96 bg-gray-100">
+            <div className="relative aspect-[16/9] w-full bg-sky/40">
               <Image
                 src={post.image}
                 alt={post.title}
                 fill
-                className="object-contain p-4"
+                className="object-contain p-6"
                 sizes="(max-width: 768px) 100vw, 800px"
               />
             </div>
           )}
-          
-          <div className="p-8">
-            <div className="mb-4">
-              <time className="text-gray-500 text-sm">
-                {post.date}
-              </time>
-            </div>
-            
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+
+          <div className="p-8 md:p-10">
+            <time className="text-sm font-semibold uppercase tracking-wider text-whisper-blue-deep">
+              {post.date}
+            </time>
+
+            <h1 className="mt-3 mb-6 font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl">
               {post.title}
             </h1>
-            
-            <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-              {typeof post.content === 'string' ? (
-                <p className="text-lg">
-                  {post.content}
-                </p>
-              ) : (
-                post.content
-              )}
+
+            <div className="max-w-none text-lg leading-relaxed text-ink-muted">
+              {typeof post.content === 'string' ? <p>{post.content}</p> : post.content}
             </div>
           </div>
         </article>

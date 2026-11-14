@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 
 export default function EmailSignup() {
@@ -27,7 +28,7 @@ export default function EmailSignup() {
       if (!response.ok) {
         throw new Error(data.error || 'Something went wrong');
       }
-      
+
       setStatus('success');
       setMessage(data.message || "Thank you for signing up! We'll be in touch soon.");
       setEmail('');
@@ -39,18 +40,47 @@ export default function EmailSignup() {
   };
 
   return (
-    <section className="py-20 px-4" style={{ background: 'linear-gradient(to bottom, rgba(183, 229, 250, 0.25) 0%, rgba(183, 229, 250, 0.25) 100%)' }}>
-      <div className="max-w-2xl mx-auto">
-        <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
-          Learn more about the Noelle Whisper Series
-        </h2>
-        <p className="text-center text-gray-600 mb-8">
-          Sign up for our email list for updates, promotions, and more.
-        </p>
-        
-        <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg">
+    <section className="relative overflow-hidden sky-gradient py-20 px-4">
+      <div className="pointer-events-none absolute left-6 top-10 opacity-80 md:left-16">
+        <Image
+          src="/website_share.png"
+          alt=""
+          width={140}
+          height={95}
+          className="img-knockout animate-float-drift h-auto w-24 md:w-32"
+          aria-hidden
+        />
+      </div>
+      <div
+        className="pointer-events-none absolute bottom-8 right-8 opacity-60 md:right-20"
+        style={{ animationDelay: '1.5s' }}
+      >
+        <Image
+          src="/website_share.png"
+          alt=""
+          width={100}
+          height={68}
+          className="img-knockout animate-float-slow h-auto w-16 rotate-12 md:w-20"
+          aria-hidden
+        />
+      </div>
+
+      <div className="relative mx-auto max-w-xl">
+        <div className="mb-10 text-center">
+          <h2 className="section-heading text-balance">
+            Learn more about the Noelle Whisper Series
+          </h2>
+          <p className="section-lead">
+            Sign up for updates, promotions, and gentle reminders that feelings matter.
+          </p>
+        </div>
+
+        <form
+          onSubmit={handleSubmit}
+          className="rounded-3xl bg-paper/90 p-8 shadow-soft ring-1 ring-whisper-blue/50 backdrop-blur-sm"
+        >
           <div className="mb-4">
-            <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
+            <label htmlFor="name" className="mb-2 block font-semibold text-ink">
               Name
             </label>
             <input
@@ -58,13 +88,13 @@ export default function EmailSignup() {
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-whisper-blue focus:border-transparent"
+              className="w-full rounded-xl border border-sky-deep/40 bg-white px-4 py-3 text-ink outline-none transition focus:border-whisper-blue-deep focus:ring-2 focus:ring-whisper-blue/60"
               required
             />
           </div>
-          
+
           <div className="mb-6">
-            <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
+            <label htmlFor="email" className="mb-2 block font-semibold text-ink">
               Email <span className="text-red-500">*</span>
             </label>
             <input
@@ -72,29 +102,30 @@ export default function EmailSignup() {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-whisper-blue focus:border-transparent"
+              className="w-full rounded-xl border border-sky-deep/40 bg-white px-4 py-3 text-ink outline-none transition focus:border-whisper-blue-deep focus:ring-2 focus:ring-whisper-blue/60"
               required
             />
           </div>
 
           {message && (
-            <div className={`mb-4 p-3 rounded-lg ${
-              status === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-            }`}>
+            <div
+              className={`mb-4 rounded-xl p-3 text-sm ${
+                status === 'success'
+                  ? 'bg-sky/80 text-whisper-blue-deeper'
+                  : 'bg-red-50 text-red-700'
+              }`}
+            >
               {message}
             </div>
           )}
 
-          <button
-            type="submit"
-            disabled={status === 'loading'}
-            className="w-full bg-whisper-blue hover:bg-whisper-blue-dark disabled:opacity-50 text-white font-semibold px-6 py-3 rounded-lg transition shadow-md hover:shadow-lg"
-          >
+          <button type="submit" disabled={status === 'loading'} className="btn-primary w-full disabled:opacity-50">
             {status === 'loading' ? 'Sending...' : 'Send'}
           </button>
 
-          <p className="mt-4 text-xs text-gray-500 text-center">
-            This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
+          <p className="mt-4 text-center text-xs text-ink-muted">
+            This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service
+            apply.
           </p>
         </form>
       </div>

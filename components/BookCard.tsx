@@ -1,4 +1,7 @@
+'use client';
+
 import Image from 'next/image';
+import { useState } from 'react';
 import { Book } from '@/types/book';
 
 interface BookCardProps {
@@ -6,53 +9,67 @@ interface BookCardProps {
 }
 
 export default function BookCard({ book }: BookCardProps) {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+    <article className="group flex flex-col overflow-hidden rounded-2xl bg-paper shadow-soft ring-1 ring-whisper-blue/40 transition hover:ring-whisper-blue-deep/30">
       {book.image && (
-        <div className="relative w-full h-64 md:h-80 bg-gray-100">
+        <div className="relative aspect-[4/3] w-full bg-sky/40">
           <Image
             src={book.image}
             alt={book.title}
             fill
-            className="object-contain"
+            className="object-contain p-6 transition duration-500 group-hover:scale-[1.02]"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
       )}
-      <div className="p-8">
+      <div className="flex flex-1 flex-col p-6 md:p-8">
         {book.isNew && (
-          <span className="inline-block bg-red-500 text-white text-sm font-semibold px-3 py-1 rounded-full mb-4">
-            NEW
+          <span className="mb-3 inline-flex w-fit items-center rounded-full bg-gold px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink">
+            New
           </span>
         )}
-        <h3 className="text-2xl font-bold text-gray-900 mb-2">{book.title}</h3>
+        <h3 className="font-display text-2xl font-semibold text-ink">{book.title}</h3>
         {book.subtitle && (
-          <p className="text-lg text-gray-700 mb-4">{book.subtitle}</p>
+          <p className="mt-1 text-base font-medium text-whisper-blue-deep">{book.subtitle}</p>
         )}
-        <p className="text-gray-600 leading-relaxed mb-4">{book.description}</p>
+        <p className="mt-4 flex-1 leading-relaxed text-ink-muted">{book.description}</p>
         {book.extendedDescription && (
-          <p className="text-gray-600 leading-relaxed mb-4">{book.extendedDescription}</p>
+          <>
+            {expanded && (
+              <p className="mt-3 leading-relaxed text-ink-muted">{book.extendedDescription}</p>
+            )}
+            <button
+              type="button"
+              onClick={() => setExpanded((v) => !v)}
+              className="mt-2 self-start text-sm font-semibold text-whisper-blue-deep underline-offset-2 hover:underline"
+            >
+              {expanded ? 'Show less' : 'Read more'}
+            </button>
+          </>
         )}
         {book.hasActivityPDF && (
-          <div className="mt-4">
-            <a
-          href="https://awhisperfromnoelle.com/downloads#250525ae-72b8-40dc-b984-79c31fb44bab" target="_blank" 
-
-              className="text-whisper-blue hover:text-whisper-blue-darker font-semibold underline"
-            >
-              Download Activity PDF
-            </a>
-          </div>
+          <a
+            href="https://awhisperfromnoelle.com/downloads#250525ae-72b8-40dc-b984-79c31fb44bab"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 text-sm font-semibold text-whisper-blue-deep underline-offset-2 hover:underline"
+          >
+            Download Activity PDF
+          </a>
         )}
         <div className="mt-6">
           <a
-            href={book.link} target="_blank" 
-            className="inline-block bg-whisper-blue hover:bg-whisper-blue-dark text-white font-semibold px-6 py-2 rounded-lg transition"
+            href={book.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary w-full sm:w-auto"
           >
             Buy Now
           </a>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
